@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Préstamos > Detalle";
+}
+
+@model Domain.IM253E08Prestamo
+
+<h2 class="mb-4">Detalle del Préstamo</h2>
+
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <th scope="row">Id</th>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <th scope="row">Usuario Id</th>
+            <td>@Model.UsuarioId</td>
+        </tr>
+        <tr>
+            <th scope="row">Libro Id</th>
+            <td>@Model.LibroId</td>
+        </tr>
+        <tr>
+            <th scope="row">Fecha de Préstamo</th>
+            <td>@Model.FechaPrestamo.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <th scope="row">Fecha de Devolución</th>
+            <td>
+                @(Model.FechaDevolucion.HasValue ? Model.FechaDevolucion.Value.ToShortDateString() : "No devuelto aún")
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Regresar</a>

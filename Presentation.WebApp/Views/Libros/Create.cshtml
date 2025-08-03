@@ -1,0 +1,32 @@
+@model Domain.IM253E08Libro
+
+@{
+    ViewData["Title"] = "Libros > Crear";
+}
+
+<h1>Insertar Libro</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="Autor">Autor:</label>
+        <input asp-for="Autor" class="form-control" required />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Editorial">Editorial:</label>
+        <input asp-for="Editorial" class="form-control" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="ISBN">ISBN:</label>
+        <input asp-for="ISBN" class="form-control" required />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Foto">Foto (URL):</label>
+        <input asp-for="Foto" class="form-control" />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Insertar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

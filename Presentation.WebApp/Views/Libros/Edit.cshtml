@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Libros > Editar";
+}
+
+@model Domain.IM253E08Libro
+
+<h1>Actualizar Libro</h1>
+
+<form asp-action="Edit" class="form-group">
+    <input asp-for="Id" type="hidden" required />
+
+    <table class="table">
+        <tr>
+            <td><label asp-for="Autor">Autor:</label></td>
+            <td>
+                <input asp-for="Autor" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="Editorial">Editorial:</label></td>
+            <td>
+                <input asp-for="Editorial" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="ISBN">ISBN:</label></td>
+            <td>
+                <input asp-for="ISBN" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="Foto">Foto (URL):</label></td>
+            <td>
+                <input asp-for="Foto" class="form-control" />
+            </td>
+        </tr>
+    </table>
+
+    <button class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+</form>

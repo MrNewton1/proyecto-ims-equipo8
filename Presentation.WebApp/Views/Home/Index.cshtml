@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido</h1>
+    <p>Este sistema gestiona préstamos de libros a usuarios.</p>
+</div>
+
+<hr />
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8 d-flex justify-content-around flex-wrap gap-3">
+        <a asp-controller="Usuarios" asp-action="Index" class="btn btn-outline-primary btn-lg">
+            Usuarios
+        </a>
+        <a asp-controller="Libros" asp-action="Index" class="btn btn-outline-success btn-lg">
+            Libros
+        </a>
+        <a asp-controller="Prestamos" asp-action="Index" class="btn btn-outline-warning btn-lg">
+            Préstamos
+        </a>
+    </div>
+</div>
+
+<hr />
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <canvas id="Chart"></canvas>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+    <script>
+        const ctx = document.getElementById('Chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Labels)),
+                datasets: [{
+                    label: 'Distribución de entidades',
+                    data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Data)),
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                aspectRatio: 2,
+                maintainAspectRatio: true
+            }
+        });
+    </script>
+}

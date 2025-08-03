@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Préstamos > Editar";
+}
+
+@model Domain.IM253E08Prestamo
+
+<h1>Actualizar Préstamo</h1>
+
+<form asp-action="Edit" class="form-group">
+    <input asp-for="Id" type="hidden" required />
+
+    <table class="table">
+        <tr>
+            <td><label asp-for="UsuarioId">Usuario:</label></td>
+            <td>
+                <select asp-for="UsuarioId" asp-items="ViewBag.UsuarioId" class="form-select" required></select>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="LibroId">Libro:</label></td>
+            <td>
+                <select asp-for="LibroId" asp-items="ViewBag.LibroId" class="form-select" required></select>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="FechaPrestamo">Fecha de Préstamo:</label></td>
+            <td>
+                <input asp-for="FechaPrestamo" type="date" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="FechaDevolucion">Fecha de Devolución:</label></td>
+            <td>
+                <input asp-for="FechaDevolucion" type="date" class="form-control" />
+            </td>
+        </tr>
+    </table>
+
+    <button class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+</form>

@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Libros > Detalle";
+}
+
+@model Domain.IM253E08Libro
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Autor</th>
+        <td>@Model.Autor</td>
+    </tr>
+    <tr>
+        <th>Editorial</th>
+        <td>@Model.Editorial</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td>@Model.ISBN</td>
+    </tr>
+    <tr>
+        <th>Foto</th>
+        <td>
+            @if (!string.IsNullOrEmpty(Model.Foto))
+            {
+                <img src="@Model.Foto" alt="Portada" style="max-width: 150px;" />
+            }
+            else
+            {
+                <span>Sin imagen</span>
+            }
+        </td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-danger mt-3">Regresar</a>

@@ -1,0 +1,32 @@
+@model Domain.IM253E08Usuario
+
+@{
+    ViewData["Title"] = "Usuarios > Crear";
+}
+
+<h1>Insertar Usuario</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="Nombre">Nombre:</label>
+        <input asp-for="Nombre" class="form-control" required />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Direccion">Dirección:</label>
+        <input asp-for="Direccion" class="form-control" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Telefono">Teléfono:</label>
+        <input asp-for="Telefono" class="form-control" required />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Correo">Correo:</label>
+        <input asp-for="Correo" type="email" class="form-control" required />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Insertar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

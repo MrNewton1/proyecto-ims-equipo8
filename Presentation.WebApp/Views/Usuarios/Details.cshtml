@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Usuarios > Detalle";
+}
+
+@model Domain.IM253E08Usuario
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="mb-4">Detalle del Usuario</h4>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Id</th>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>@Model.Nombre</td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>@Model.Direccion</td>
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <td>@Model.Telefono</td>
+            </tr>
+            <tr>
+                <th>Correo</th>
+                <td>@Model.Correo</td>
+            </tr>
+        </table>
+
+        <a asp-action="Index" class="btn btn-danger mt-3">Regresar</a>
+    </div>
+</div>

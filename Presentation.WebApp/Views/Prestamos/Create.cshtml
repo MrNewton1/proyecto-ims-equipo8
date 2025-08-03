@@ -1,0 +1,27 @@
+@model Domain.IM253E08Prestamo
+
+@{
+    ViewData["Title"] = "Préstamos > Crear";
+}
+
+<h1>Insertar Préstamo</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="UsuarioId">Usuario:</label>
+        <select asp-for="UsuarioId" asp-items="ViewBag.UsuarioId" class="form-control"></select>
+    </div>
+    <br />
+    <div>
+        <label asp-for="LibroId">Libro:</label>
+        <select asp-for="LibroId" asp-items="ViewBag.LibroId" class="form-control"></select>
+    </div>
+    <br />
+    <div>
+        <label asp-for="FechaPrestamo">Fecha de Préstamo:</label>
+        <input asp-for="FechaPrestamo" type="date" class="form-control" required />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Insertar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

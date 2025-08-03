@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Usuarios > Editar";
+}
+
+@model Domain.IM253E08Usuario
+
+<h1>Actualizar Usuario</h1>
+
+<form asp-action="Edit" class="form-group">
+    <input asp-for="Id" type="hidden" />
+
+    <table class="table">
+        <tr>
+            <td><label asp-for="Nombre">Nombre:</label></td>
+            <td><input asp-for="Nombre" class="form-control" required /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Direccion">Dirección:</label></td>
+            <td><input asp-for="Direccion" class="form-control" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Telefono">Teléfono:</label></td>
+            <td><input asp-for="Telefono" class="form-control" required /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Correo">Correo:</label></td>
+            <td><input asp-for="Correo" class="form-control" type="email" required /></td>
+        </tr>
+    </table>
+
+    <button class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
