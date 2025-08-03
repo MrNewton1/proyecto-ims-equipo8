@@ -1,0 +1,29 @@
+@model Domain.IM253E08Usuario
+
+<div class="container py-3">
+    <h5>Detalles del Usuario</h5>
+    <div class="row g-3 mt-2">
+        <div class="col-md-6">
+            <label class="form-label"><strong>Nombre:</strong></label>
+            <p>@Model.Nombre</p>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label"><strong>Correo:</strong></label>
+            <p>@Model.Correo</p>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label"><strong>Dirección:</strong></label>
+            <p>@Model.Direccion</p>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label"><strong>Teléfono:</strong></label>
+            <p>@Model.Telefono</p>
+        </div>
+        @* Si tienes más campos en IM253E08Usuario, añádelos aquí:
+        <div class="col-md-6">
+            <label class="form-label"><strong>Otro Campo:</strong></label>
+            <p>@Model.OtroCampo</p>
+        </div>
+        *@
+    </div>
+</div>

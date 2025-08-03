@@ -26,17 +26,28 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var u in Model)
+            @foreach (var usuario in Model)
             {
                 <tr>
-                    <td>@u.Nombre</td>
-                    <td>@u.Direccion</td>
-                    <td>@u.Telefono</td>
-                    <td>@u.Correo</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Direccion</td>
+                    <td>@usuario.Telefono</td>
+                    <td>@usuario.Correo</td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@u.Id" class="btn btn-info btn-sm">Detalles</a>
-                        <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="javascript:void(0);" onclick="confirmarEliminacion('@u.Id')" class="btn btn-danger btn-sm">Eliminar</a>
+                        <!-- Botón Ajax para detalles -->
+                        <button type="button"
+                                class="btn btn-info btn-sm btn-detalles"
+                                data-id="@usuario.Id">
+                            Detalles
+                        </button>
+                        <a asp-action="Edit" asp-route-id="@usuario.Id" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+                        <button type="button"
+                                class="btn btn-danger btn-sm"
+                                onclick="confirmarEliminacion('@usuario.Id')">
+                            Eliminar
+                        </button>
                     </td>
                 </tr>
             }
@@ -61,14 +72,9 @@
 </div>
 
 @section Scripts {
-    <!-- jQuery (requerido por DataTables) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- DataTables + Bootstrap 5 -->
+    <!-- DataTables y Buttons JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-
-    <!-- Botones de exportación -->
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -78,6 +84,7 @@
 
     <script>
         $(document).ready(function () {
+            // Inicializar DataTables con botones de exportación
             $('#usuariosTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: ['excelHtml5', 'pdfHtml5'],
@@ -85,12 +92,21 @@
                     url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'
                 }
             });
+
+            // Petición Ajax para detalles
+            $('.btn-detalles').on('click', function () {
+                var id = $(this).data('id');
+                $.get('/Usuarios/Details/' + id, function (html) {
+                    $('#detallesModal .modal-body').html(html);
+                    new bootstrap.Modal(document.getElementById('detallesModal')).show();
+                });
+            });
         });
 
+        // Modal de confirmación de eliminación
         function confirmarEliminacion(id) {
             document.getElementById('btnEliminarConfirmado').href = `/Usuarios/Delete/${id}`;
-            const modal = new bootstrap.Modal(document.getElementById('modalEliminarUsuario'));
-            modal.show();
+            new bootstrap.Modal(document.getElementById('modalEliminarUsuario')).show();
         }
     </script>
 }

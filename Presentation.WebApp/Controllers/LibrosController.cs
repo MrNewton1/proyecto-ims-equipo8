@@ -7,29 +7,38 @@ using Infrastructure;
 
 namespace Presentation.WebApp.Controllers
 {
-public class LibrosController : Controller
-{
-    private readonly LibrosDbContext _librosDbContext;
-
-    public LibrosController(IConfiguration configuration)
+    public class LibrosController : Controller
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection") 
-            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-        
-        _librosDbContext = new LibrosDbContext(connectionString);
-    }
+        private readonly LibrosDbContext _librosDbContext;
 
-    public IActionResult Index()
-    {
-        var data = _librosDbContext.List();
-        return View(data);
-    }
+        public LibrosController(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            _librosDbContext = new LibrosDbContext(connectionString);
+        }
+
+        public IActionResult Index()
+        {
+            var data = _librosDbContext.List();
+            return View(data);
+        }
 
         public IActionResult Details(Guid id)
         {
-            var data = _librosDbContext.Details(id);
-            return View(data);
+            var libro = _librosDbContext.Details(id);
+            if (libro == null)
+                return NotFound();
+
+            // Si viene vía Ajax, devuelve sólo la partial
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("_DetallesPartial", libro);
+
+            // Si es petición normal, devuelve la vista completa
+            return View(libro);
         }
+
 
         public IActionResult Create()
         {
