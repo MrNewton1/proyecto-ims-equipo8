@@ -1,10 +1,10 @@
+@model List<Domain.IM253E08Usuario>
+
 @{
     ViewData["Title"] = "Usuarios";
 }
 
-@model List<Domain.IM253E08Usuario>
-
-<!-- DataTables CSS + Botones -->
+<!-- DataTables CSS + Extensiones de botones -->
 <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.bootstrap5.min.css" rel="stylesheet" />
 
@@ -72,7 +72,7 @@
 </div>
 
 @section Scripts {
-    <!-- DataTables y Buttons JS -->
+    <!-- DataTables JS + Extensiones de botones -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
@@ -83,8 +83,8 @@
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 
     <script>
+        // Inicializa DataTables con botones de exportación
         $(document).ready(function () {
-            // Inicializar DataTables con botones de exportación
             $('#usuariosTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: ['excelHtml5', 'pdfHtml5'],
@@ -93,7 +93,7 @@
                 }
             });
 
-            // Petición Ajax para detalles
+            // Petición Ajax para mostrar detalles en modal
             $('.btn-detalles').on('click', function () {
                 var id = $(this).data('id');
                 $.get('/Usuarios/Details/' + id, function (html) {
@@ -103,7 +103,7 @@
             });
         });
 
-        // Modal de confirmación de eliminación
+        // Muestra el modal de confirmación para eliminar un usuario.
         function confirmarEliminacion(id) {
             document.getElementById('btnEliminarConfirmado').href = `/Usuarios/Delete/${id}`;
             new bootstrap.Modal(document.getElementById('modalEliminarUsuario')).show();

@@ -1,10 +1,10 @@
+@model List<Domain.IM253E08Libro>
+
 @{
     ViewData["Title"] = "Libros";
 }
 
-@model List<Domain.IM253E08Libro>
-
-<!-- DataTables CSS + Botones -->
+<!-- DataTables CSS + Extensiones de botones -->
 <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.bootstrap5.min.css" rel="stylesheet" />
 
@@ -48,14 +48,16 @@
                                 data-id="@libro.Id">
                             Detalles
                         </button>
-                        <a asp-action="Edit" asp-route-id="@libro.Id" class="btn btn-warning btn-sm">
+                        <a asp-action="Edit"
+                           asp-route-id="@libro.Id"
+                           class="btn btn-warning btn-sm">
                             Editar
                         </a>
-                        <a href="javascript:void(0);"
-                           onclick="confirmarEliminacion('@libro.Id')"
-                           class="btn btn-danger btn-sm">
+                        <button type="button"
+                                class="btn btn-danger btn-sm"
+                                onclick="confirmarEliminacion('@libro.Id')">
                             Eliminar
-                        </a>
+                        </button>
                     </td>
                 </tr>
             }
@@ -80,14 +82,9 @@
 </div>
 
 @section Scripts {
-    <!-- jQuery (si no lo carga el layout) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- DataTables y Bootstrap 5 -->
+    <!-- DataTables JS + Extensiones de botones -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-
-    <!-- Botones de exportación -->
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -96,7 +93,7 @@
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 
     <script>
-        // Inicialización de DataTables
+        // Inicializa DataTables con botones de exportación
         $(document).ready(function () {
             $('#librosTable').DataTable({
                 dom: 'Bfrtip',
@@ -107,20 +104,19 @@
             });
         });
 
-        // Confirmar eliminación
+        // Confirma eliminación: recibe el GUID del libro a eliminar
         function confirmarEliminacion(id) {
             document.getElementById('btnEliminarConfirmado').href = `/Libros/Delete/${id}`;
-            const modal = new bootstrap.Modal(document.getElementById('modalEliminarLibro'));
-            modal.show();
+            new bootstrap.Modal(document.getElementById('modalEliminarLibro')).show();
         }
 
-        // Petición Ajax para detalles
+        // Petición Ajax para mostrar detalles en modal
         $(function () {
-            $(".btn-detalles").on("click", function () {
-                var id = $(this).data("id");
-                $.get("/Libros/Details/" + id, function (html) {
-                    $("#detallesModal .modal-body").html(html);
-                    new bootstrap.Modal(document.getElementById("detallesModal")).show();
+            $('.btn-detalles').on('click', function () {
+                var id = $(this).data('id');
+                $.get('/Libros/Details/' + id, function (html) {
+                    $('#detallesModal .modal-body').html(html);
+                    new bootstrap.Modal(document.getElementById('detallesModal')).show();
                 });
             });
         });

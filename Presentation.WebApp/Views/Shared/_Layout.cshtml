@@ -2,24 +2,51 @@
 <html lang="en">
 
 <head>
+    <!-- 
+        Configuración de metadatos de la página:
+        - charset: codificación de caracteres UTF-8
+        - viewport: hace la página responsiva en dispositivos móviles
+        - title: muestra el nombre de la vista seguido del nombre de la aplicación
+    -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Presentation.WebApp</title>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- 
+        Tema personalizado (Bootswatch) descargado localmente.
+        Sustituye el CSS por defecto de Bootstrap con los estilos del tema.
+    -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
+
+    <!-- 
+        Estilos específicos de la aplicación:
+        - site.css: reglas globales y overrides de CSS
+        - Presentation.WebApp.styles.css: estilos generados por Razor Components
+    -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Presentation.WebApp.styles.css" asp-append-version="true" />
 </head>
 
 <body>
+    <!--
+        Encabezado de la aplicación con la barra de navegación:
+        - navbar-expand-sm: responsive, se colapsa en pantallas pequeñas
+        - bg-white, border-bottom, box-shadow: estilos de fondo y separación
+        - asp-controller y asp-action: generan rutas MVC automáticamente
+    -->
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Presentation.WebApp</a>
+                <!-- Logo / marca que enlaza a Home/Index -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    Presentation.WebApp
+                </a>
+                <!-- Botón de menú para dispositivos pequeños -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                    aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- Enlaces de navegación -->
                 <div class="collapse navbar-collapse" id="mainNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -43,24 +70,49 @@
         </nav>
     </header>
 
+    <!--
+        Sección principal de contenido:
+        - RenderBody() inyecta la vista específica de cada acción
+    -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    <!--
+        Pie de página global:
+        - muestra copyright y enlace a la política de privacidad
+    -->
     <footer class="border-top footer text-muted mt-4">
         <div class="container text-center">
-            &copy; 2025 - Presentation.WebApp - <a asp-controller="Home" asp-action="Privacy">Privacidad</a>
+            &copy; 2025 - Presentation.WebApp - 
+            <a asp-controller="Home" asp-action="Privacy">Privacidad</a>
         </div>
     </footer>
 
+    <!--
+        Carga de scripts necesarios para la funcionalidad:
+        - jQuery: requerido por plugins como DataTables y valida.
+        - bootstrap.bundle.min.js: incluye Popper.js y los componentes JS de Bootstrap.
+        - site.js: scripts específicos de la aplicación.
+    -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <!--
+        RenderSection("Scripts"):
+        Permite que cada vista agregue su propio bloque de scripts
+        (p. ej. inicialización de DataTables o llamadas Ajax).
+    -->
     @await RenderSectionAsync("Scripts", required: false)
-    <!-- Modal de detalles -->
+
+    <!--
+        Modal genérico para mostrar detalles vía Ajax:
+        - id="detallesModal": usado por los scripts de detalles para inyectar contenido.
+        - modal-lg: tamaño grande para mostrar suficiente información.
+    -->
     <div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -69,7 +121,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Aquí carga la partial vía Ajax -->
+                    <!-- El contenido parcial se inyecta aquí cuando se hace la llamada Ajax -->
                 </div>
             </div>
         </div>

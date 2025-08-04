@@ -1,14 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Inicio";
+    ViewData["Title"] = "Inicio"; // Título de la página que se mostrará en el <title> del layout
 }
 
+<!-- Sección principal de bienvenida al usuario -->
 <div class="text-center">
+    <!-- Encabezado grande de bienvenida -->
     <h1 class="display-4">Bienvenido</h1>
+    <!-- Descripción breve del propósito del sistema -->
     <p>Este sistema gestiona préstamos de libros a usuarios.</p>
 </div>
 
-<hr />
+<hr /> <!-- Línea divisoria -->
 
+<!-- Botones principales que conducen a las secciones de Usuarios, Libros y Préstamos -->
 <div class="row justify-content-center mt-4">
     <div class="col-md-8 d-flex justify-content-around flex-wrap gap-3">
         <a asp-controller="Usuarios" asp-action="Index" class="btn btn-outline-primary btn-lg">
@@ -23,18 +27,25 @@
     </div>
 </div>
 
-<hr />
+<hr /> <!-- Otra línea divisoria -->
 
+<!-- Gráfico circular que muestra la distribución de usuarios, libros y préstamos -->
 <div class="row justify-content-center mt-5">
     <div class="col-md-6">
+        <!-- Elemento canvas donde Chart.js renderiza el doughnut chart -->
         <canvas id="Chart"></canvas>
     </div>
 </div>
 
+<!-- Sección de scripts específicos para esta vista -->
 @section Scripts {
+    <!-- Carga de Chart.js desde CDN para crear el gráfico -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
     <script>
+        // Obtiene el contexto 2D del canvas
         const ctx = document.getElementById('Chart').getContext('2d');
+
+        // Inicializa un doughnut chart con las etiquetas y datos pasados desde el controlador via ViewBag
         new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -42,18 +53,19 @@
                 datasets: [{
                     label: 'Distribución de entidades',
                     data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Data)),
+                    // Colores semi-transparente para cada segmento
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.6)',
                         'rgba(75, 192, 192, 0.6)',
                         'rgba(255, 206, 86, 0.6)'
                     ],
-                    hoverOffset: 4
+                    hoverOffset: 4 // Desplazamiento al pasar el ratón
                 }]
             },
             options: {
-                responsive: true,
-                aspectRatio: 2,
-                maintainAspectRatio: true
+                responsive: true,           // Mantiene responsividad
+                aspectRatio: 2,             // Relación de aspecto del gráfico
+                maintainAspectRatio: true   // Forzar el aspect ratio definido
             }
         });
     </script>

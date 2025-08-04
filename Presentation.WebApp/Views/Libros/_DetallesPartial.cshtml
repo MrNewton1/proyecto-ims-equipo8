@@ -1,17 +1,40 @@
 @model Domain.IM253E08Libro
 
-<div class="row g-3">
-    <div class="col-md-4">
-        <label class="form-label"><strong>Autor:</strong></label>
-        <p>@Model.Autor</p>
+@* 
+    Partial view que renderiza los detalles de un libro dentro del modal.
+    Se inyecta vía Ajax cuando el usuario pulsa el botón “Detalles”.
+*@
+
+<div class="container py-3">
+    <!-- Título de sección dentro del modal -->
+    <h5>Detalles del Libro</h5>
+
+    <div class="row g-3 mt-2">
+        <!-- Campo Autor -->
+        <div class="col-md-4">
+            <label class="form-label"><strong>Autor:</strong></label>
+            <p>@Model.Autor</p>
+        </div>
+
+        <!-- Campo Editorial -->
+        <div class="col-md-4">
+            <label class="form-label"><strong>Editorial:</strong></label>
+            <p>@Model.Editorial</p>
+        </div>
+
+        <!-- Campo ISBN -->
+        <div class="col-md-4">
+            <label class="form-label"><strong>ISBN:</strong></label>
+            <p>@Model.ISBN</p>
+        </div>
+
+        @* Si el libro tiene imagen, la mostramos aquí con clase img-fluid para que se adapte al contenedor *@
+        @if (!string.IsNullOrEmpty(Model.Foto))
+        {
+            <div class="col-md-4">
+                <label class="form-label"><strong>Portada:</strong></label>
+                <img src="@Model.Foto" alt="Portada del libro" class="img-fluid" />
+            </div>
+        }
     </div>
-    <div class="col-md-4">
-        <label class="form-label"><strong>Editorial:</strong></label>
-        <p>@Model.Editorial</p>
-    </div>
-    <div class="col-md-4">
-        <label class="form-label"><strong>ISBN:</strong></label>
-        <p>@Model.ISBN</p>
-    </div>
-    @* Añade más campos aquí con clases Bootstrap *@
 </div>
