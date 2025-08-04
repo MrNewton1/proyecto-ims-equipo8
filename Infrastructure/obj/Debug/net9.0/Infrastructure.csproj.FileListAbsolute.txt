@@ -49,3 +49,4 @@ C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Infrastructure\obj\Debug
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Infrastructure\obj\Debug\net9.0\refint\Infrastructure.dll
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Infrastructure\obj\Debug\net9.0\Infrastructure.pdb
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Infrastructure\obj\Debug\net9.0\ref\Infrastructure.dll
+C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Infrastructure\obj\Debug\net9.0\Infrastructure.sourcelink.json

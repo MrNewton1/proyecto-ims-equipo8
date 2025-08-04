@@ -43,3 +43,4 @@ C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Application\obj\Debug\ne
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Application\obj\Debug\net9.0\refint\Application.dll
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Application\obj\Debug\net9.0\Application.pdb
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Application\obj\Debug\net9.0\ref\Application.dll
+C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Application\obj\Debug\net9.0\Application.sourcelink.json

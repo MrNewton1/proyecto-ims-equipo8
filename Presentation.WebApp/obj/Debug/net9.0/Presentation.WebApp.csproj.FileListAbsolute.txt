@@ -477,4 +477,5 @@ C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.pdb
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.genruntimeconfig.cache
 C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\Debug\net9.0\ref\Presentation.WebApp.dll
-C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\Debug\net9.0\compressed\qjxp71rap7-z7jskjtqyw.gz
+C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.sourcelink.json
+C:\Users\aiph-\Documents\Proyectos\proyecto-ims-equipo8\Presentation.WebApp\obj\Debug\net9.0\compressed\qjxp71rap7-zrvpq5s7nb.gz
